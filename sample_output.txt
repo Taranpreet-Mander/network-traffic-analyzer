@@ -1,0 +1,36 @@
+$ python analyzer.py capture.pcap
+
+[*] loading capture.pcap ...
+[*] loaded 111 packets
+
+===== traffic summary =====
+packets: 111
+total size: 5.5 KB
+
+protocols:
+  TCP    80
+  UDP    30
+  ICMP   1
+
+top 10 talkers (source ip):
+  10.0.0.66              60 packets
+  192.168.1.10           51 packets
+
+top 10 destination ports:
+  53     dns       31
+  443    https     20
+  1      ?         1
+  2      ?         1
+  3      ?         1
+  4      ?         1
+  5      ?         1
+  6      ?         1
+  7      ?         1
+  8      ?         1
+
+===== simple detections =====
+  [!] possible port scan from 10.0.0.66 - touched 60 different ports
+  [!] lots of SYN packets from 10.0.0.66 (60) - could be a scan or SYN flood
+
+(this run was against a test capture i made with a fake port scan in it,
+just to check the detection actually fires. and it did :)
